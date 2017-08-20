@@ -12,8 +12,8 @@ repeat_offenders = []  # This list keeps track of repeat offenders.
 def setup(bot):
     """Set up the extension."""
 
-    @bot.event
-    async def on_message(message):
+    @bot.listen("on_message")
+    async def remove_invites(message):
         """When people post invite links, deal with them accordingly."""
         message_urls = re.findall(REGEX_URL, message.content)
         for url in message_urls:
