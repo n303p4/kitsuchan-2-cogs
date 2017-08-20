@@ -16,9 +16,7 @@ def setup(bot):
     async def remove_invites(message):
         """When people post invite links, deal with them accordingly."""
         message_urls = re.findall(REGEX_URL, message.content)
-        print(message_urls)
         for url in message_urls:
-            print(url)
             if await bot.get_invite(url):
                 await message.delete()
                 # Give the offender a warning first. If they're a repeat offender, then ban them.
