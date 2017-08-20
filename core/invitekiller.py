@@ -4,7 +4,7 @@
 
 import re
 
-REGEX_URL = r"\S*discord\S*\..*/\S*"
+REGEX_URL = r"discord\S*\..*/\S*"
 
 repeat_offenders = []  # This list keeps track of repeat offenders.
 
