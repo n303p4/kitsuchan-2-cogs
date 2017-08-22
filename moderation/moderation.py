@@ -2,6 +2,7 @@
 
 """Moderation extension."""
 
+import discord
 from discord.ext import commands
 
 STATUS_INDICATORS = {"online": ":green_heart:",
@@ -89,6 +90,14 @@ class Moderation:
                 message.append(f"{emote} " + ", ".join(mods_with_status))
         message = "\n".join(message)
         await ctx.send(message)
+
+    @commands.command()
+    @commands.has_permissions(manage_nicknames=True)
+    @commands.bot_has_permissions(manage_nicknames=True)
+    @commands.cooldown(6, 12)
+    async def dehoist(self, ctx, *, member: discord.Member):
+        await member.edit(nick="z" + member.display_name)
+        await ctx.send("Yoink!")
 
 
 def setup(bot):
