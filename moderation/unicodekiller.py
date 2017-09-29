@@ -4,7 +4,8 @@
 
 import re
 
-REGEX_URL = r"discord\S*\..*/\S*"
+VALID_UNICODE = [
+]
 
 repeat_offenders = []  # This list keeps track of repeat offenders.
 
@@ -13,11 +14,12 @@ def setup(bot):
     """Set up the extension."""
 
     @bot.listen("on_message")
-    async def remove_invites(message):
+    async def remove_unicode(message):
         """When people post invite links, deal with them accordingly."""
-        message_urls = re.findall(REGEX_URL, message.content)
-        for url in message_urls:
-            if await bot.get_invite(url):
+        for character in message.content:
+            code = ord(character)
+            print(code)
+            if code > 255 and code not in VALID_UNICODE:
                 await message.delete()
                 # Give the offender a warning first. If they're a repeat offender, then ban them.
                 if message.author.id in repeat_offenders:
@@ -26,7 +28,6 @@ def setup(bot):
                     repeat_offenders.remove(message.author.id)
                     await message.channel.guild.ban(message.author)
                 else:
-                    response = (f"{message.author.mention}, please do not post invite links.")
+                    response = (f"{message.author.mention}, please do not spampost.")
                     await message.channel.send(response)
                     repeat_offenders.append(message.author.id)
-                break
