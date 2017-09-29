@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-"""A simple Discord bot that deletes invite links and bans repeat offenders."""
+"""A simple cog that deletes invite links and bans repeat offenders."""
 
 import re
 

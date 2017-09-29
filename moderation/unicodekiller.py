@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
 
-"""A simple Discord bot that deletes invite links and bans repeat offenders."""
+"""A simple cog that eliminates Unicode.
 
-import re
+Note that this has very real potential to be disruptive, as it will target non-ASCII
+characters in general. I'll eventually update it for people speaking non-English
+languages.
+"""
 
 VALID_UNICODE = [
 ]
