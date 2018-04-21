@@ -24,7 +24,7 @@ def setup(bot):
                     response = (f"{message.author.mention}, you were warned. See you later.")
                     await message.channel.send(response)
                     repeat_offenders.remove(message.author.id)
-                    await message.channel.guild.ban(message.author)
+                    await message.channel.guild.ban(message.author, reason="Invite links")
                 else:
                     response = (f"{message.author.mention}, please do not post invite links.")
                     await message.channel.send(response)
